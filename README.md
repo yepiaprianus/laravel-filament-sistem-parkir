@@ -44,7 +44,7 @@ Pastikan Anda sudah menginstal PHP >= 8.2 dan Composer di perangkat Anda.
    php artisan key:generate
 ```
 
-4.**Migrasi Database**
+4. **Migrasi Database**
 
 ```bash
 php artisan migrate --seed
@@ -58,7 +58,8 @@ php artisan serve
 
 6. **User default**
 
-```admin
+```
+admin
 admin
 
 officer
