@@ -30,15 +30,11 @@ Pastikan Anda sudah menginstal PHP >= 8.2 dan Composer di perangkat Anda.
    ```bash
    git clone [https://github.com/yepiaprianus/laravel-filament-sistem-parkir.git](https://github.com/yepiaprianus/laravel-filament-sistem-parkir.git)
    cd parking-system-filament
-   composer install
    ```
-
 2. **Instal Dependensi**
 
 ```bash
    composer install
-   php artisan migrate --seed
-   php artisan serve
 ```
 
 3. **Konfigurasi Environment**
