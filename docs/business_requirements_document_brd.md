@@ -1,0 +1,33 @@
+# Business Requirements Document (BRD)
+**Proyek:** Pengembangan Aplikasi Parkir
+**Posisi:** Programmer (Software Developer)
+
+## 1. Pendahuluan
+Dokumen ini menjelaskan kebutuhan bisnis untuk pembuatan "Aplikasi Parkir". Aplikasi ini ditujukan untuk mengelola sistem perparkiran yang mencakup pencatatan kendaraan masuk dan keluar, manajemen area parkir, penetapan tarif, serta pelaporan keuangan untuk manajemen.
+
+## 2. Tujuan Bisnis
+*   Mendigitalisasi proses pencatatan parkir (masuk dan keluar) agar lebih cepat dan akurat.
+*   Mengelola kapasitas area parkir secara *real-time*.
+*   Menyediakan laporan rekapitulasi transaksi yang transparan bagi pemilik (Owner).
+*   Meningkatkan keamanan melalui pencatatan log aktivitas sistem.
+
+## 3. Pengguna / Aktor (User Roles)
+Sistem ini akan digunakan oleh 3 (tiga) level pengguna dengan hak akses yang berbeda:
+1.  **Admin:** Bertanggung jawab atas pengelolaan data master (pengguna, tarif, area, kendaraan) dan pemantauan sistem (log aktivitas).
+2.  **Petugas (Operator):** Bertanggung jawab atas operasional sehari-hari di lapangan, yaitu memproses transaksi parkir dan mencetak struk.
+3.  **Owner (Pemilik):** Bertanggung jawab atas pengawasan bisnis, membutuhkan akses ke laporan transaksi parkir.
+
+## 4. Ruang Lingkup Kebutuhan Bisnis
+Berdasarkan tabel matriks kebutuhan bisnis, berikut adalah fungsi utama yang harus ada:
+*   **Otentikasi:** Semua pengguna wajib melakukan *Login* dan *Logout*.
+*   **Manajemen Data (oleh Admin):** 
+    *   Manajemen (CRUD) data User.
+    *   Manajemen (CRUD) Tarif Parkir berdasarkan jenis kendaraan.
+    *   Manajemen (CRUD) Area Parkir dan kapasitasnya.
+    *   Manajemen (CRUD) data Kendaraan.
+    *   Melihat Log Aktivitas sistem.
+*   **Operasional Parkir (oleh Petugas):**
+    *   Mencatat Transaksi kendaraan masuk dan keluar.
+    *   Mencetak Struk parkir untuk pelanggan.
+*   **Pelaporan (oleh Owner):**
+    *   Melihat rekap transaksi sesuai dengan rentang waktu yang diminta (filter tanggal/waktu).
