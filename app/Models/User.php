@@ -2,86 +2,59 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    protected $table = 'tb_user';
+    protected $primaryKey = 'id_user';
+
     protected $fillable = [
-        'name',
+        'nama_lengkap',
         'username',
-        'role',
         'password',
+        'role',
+        'status_aktif',
     ];
 
-    // Konstanta Role
-    const ROLE_ADMIN = 'admin';
-    const ROLE_PETUGAS = 'officer';
-    const ROLE_OWNER = 'owner';
-
-    // Opsional: Helper untuk cek role
-    public function isAdmin()
-    {
-        return $this->role === self::ROLE_ADMIN;
-    }
-    public function isPetugas()
-    {
-        return $this->role === self::ROLE_PETUGAS;
-    }
-    public function isOwner()
-    {
-        return $this->role === self::ROLE_OWNER;
-    }
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
-        // 'remember_token',
-        // 'email_verified_at',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
-            // 'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'status_aktif' => 'boolean',
         ];
     }
 
-    public function canAccessPanel($panel): bool
+    public function isAdmin(): bool
     {
-        if ($panel->getId() === 'admin') {
-            return $this->role === 'admin';
-        }
+        return $this->role === 'admin';
+    }
 
-        if ($panel->getId() === 'officer') {
-            return in_array($this->role, ['admin', 'officer']);
-        }
+    public function isPetugas(): bool
+    {
+        return $this->role === 'petugas';
+    }
 
-        if ($panel->getId() === 'owner') {
-            return in_array($this->role, ['admin', 'owner']);
-        }
+    public function isOwner(): bool
+    {
+        return $this->role === 'owner';
+    }
 
-        return false;
+    public function transaksi()
+    {
+        return $this->hasMany(Transaksi::class, 'id_user', 'id_user');
+    }
+
+    public function logAktivitas()
+    {
+        return $this->hasMany(LogAktivitas::class, 'id_user', 'id_user');
     }
 }

@@ -2,44 +2,74 @@
 
 namespace Database\Seeders;
 
+use App\Models\AreaParkir;
+use App\Models\Tarif;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::upsert(
+        // 1. Master User
+        $users = [
             [
-                [
-                    'name' => 'Super Admin',
-                    'username' => 'admin',
-                    'password' => bcrypt('admin'),
-                    'role' => 'admin',
-                ],
-                [
-                    'name' => 'Petugas Parkir',
-                    'username' => 'officer',
-                    'password' => bcrypt('officer'),
-                    'role' => 'officer',
-                ],
-                [
-                    'name' => 'Pemilik Parkir',
-                    'username' => 'owner',
-                    'password' => bcrypt('owner'),
-                    'role' => 'owner',
-                ]
+                'nama_lengkap' => 'Administrator Parkir',
+                'username' => 'admin',
+                'password' => Hash::make('admin'),
+                'role' => 'admin',
+                'status_aktif' => 1,
             ],
-            ['username'],
-            ['name', 'password', 'role']
-        );
+            [
+                'nama_lengkap' => 'Petugas Operator',
+                'username' => 'petugas',
+                'password' => Hash::make('petugas'),
+                'role' => 'petugas',
+                'status_aktif' => 1,
+            ],
+            [
+                'nama_lengkap' => 'Pemilik Bisnis Parkir',
+                'username' => 'owner',
+                'password' => Hash::make('owner'),
+                'role' => 'owner',
+                'status_aktif' => 1,
+            ],
+        ];
+
+        foreach ($users as $userData) {
+            User::updateOrCreate(
+                ['username' => $userData['username']],
+                $userData
+            );
+        }
+
+        // 2. Master Tarif
+        $tarifs = [
+            ['jenis_kendaraan' => 'motor', 'tarif_per_jam' => 2000],
+            ['jenis_kendaraan' => 'mobil', 'tarif_per_jam' => 5000],
+            ['jenis_kendaraan' => 'lainnya', 'tarif_per_jam' => 10000],
+        ];
+
+        foreach ($tarifs as $tarifData) {
+            Tarif::updateOrCreate(
+                ['jenis_kendaraan' => $tarifData['jenis_kendaraan']],
+                $tarifData
+            );
+        }
+
+        // 3. Master Area Parkir
+        $areas = [
+            ['nama_area' => 'Area A - Gedung Utama', 'kapasitas' => 50, 'terisi' => 0],
+            ['nama_area' => 'Area B - Basement', 'kapasitas' => 80, 'terisi' => 0],
+            ['nama_area' => 'Area C - Khusus Mobil', 'kapasitas' => 30, 'terisi' => 0],
+        ];
+
+        foreach ($areas as $areaData) {
+            AreaParkir::updateOrCreate(
+                ['nama_area' => $areaData['nama_area']],
+                $areaData
+            );
+        }
     }
 }
