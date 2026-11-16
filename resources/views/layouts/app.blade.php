@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
     </style>
@@ -39,8 +39,8 @@
                 </div>
                 <form action="{{ route('logout') }}" method="POST" class="inline">
                     @csrf
-                    <button type="submit" class="bg-indigo-800 hover:bg-indigo-900 text-white text-xs font-semibold py-2 px-3 rounded-lg border border-indigo-600 transition flex items-center space-x-1 shadow-sm">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+                    <button type="submit" class="bg-indigo-800 hover:bg-indigo-900 text-white text-xs font-semibold py-2 px-3 rounded-lg border border-indigo-600 transition flex items-center space-x-1.5 shadow-sm">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
                         <span>Logout</span>
                     </button>
                 </form>
@@ -51,42 +51,57 @@
     <!-- Sub-Navbar / Navigation -->
     <nav class="bg-white border-b border-gray-200 shadow-sm sticky top-16 z-30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex space-x-1 sm:space-x-4 overflow-x-auto py-2 text-sm font-medium">
+            <div class="flex space-x-1 sm:space-x-3 overflow-x-auto py-2 text-sm font-medium">
                 @if(Auth::user()->role === 'admin')
-                    <a href="{{ route('admin.dashboard') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('admin.dashboard') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        📊 Dashboard
+                    <a href="{{ route('admin.dashboard') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('admin.dashboard') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        <span>Dashboard</span>
                     </a>
-                    <a href="{{ route('admin.users.index') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('admin.users.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        👥 Kelola User
+                    <a href="{{ route('admin.users.index') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('admin.users.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <span>Kelola User</span>
                     </a>
-                    <a href="{{ route('admin.areas.index') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('admin.areas.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        📍 Area Parkir
+                    <a href="{{ route('admin.areas.index') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('admin.areas.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <span>Area Parkir</span>
                     </a>
-                    <a href="{{ route('admin.tarifs.index') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('admin.tarifs.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        💰 Master Tarif
+                    <a href="{{ route('admin.tarifs.index') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('admin.tarifs.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Master Tarif</span>
                     </a>
-                    <a href="{{ route('admin.kendaraans.index') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('admin.kendaraans.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        🚗 Master Kendaraan
+                    <a href="{{ route('admin.kendaraans.index') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('admin.kendaraans.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        <span>Master Kendaraan</span>
                     </a>
-                    <a href="{{ route('admin.logs.index') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('admin.logs.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        📜 Log Aktivitas
+                    <a href="{{ route('admin.logs.index') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('admin.logs.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <span>Log Aktivitas</span>
                     </a>
                 @elseif(Auth::user()->role === 'petugas')
-                    <a href="{{ route('petugas.dashboard') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('petugas.dashboard') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        📊 Dashboard
+                    <a href="{{ route('petugas.dashboard') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('petugas.dashboard') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        <span>Dashboard</span>
                     </a>
-                    <a href="{{ route('petugas.transaksi.masuk') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('petugas.transaksi.masuk') ? 'bg-emerald-50 text-emerald-700 font-bold' : 'text-gray-600 hover:text-emerald-600 hover:bg-gray-50' }}">
-                        ➕ Kendaraan Masuk
+                    <a href="{{ route('petugas.transaksi.masuk') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('petugas.transaksi.masuk') ? 'bg-emerald-50 text-emerald-700 font-bold' : 'text-gray-600 hover:text-emerald-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+                        <span>Kendaraan Masuk</span>
                     </a>
-                    <a href="{{ route('petugas.transaksi.index') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('petugas.transaksi.index') || request()->routeIs('petugas.transaksi.checkout') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        📋 Transaksi Parkir (Keluar / Struk)
+                    <a href="{{ route('petugas.transaksi.index', ['status' => 'masuk']) }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('petugas.transaksi.index') && request('status', 'masuk') === 'masuk' ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Kendaraan Parkir (Aktif)</span>
+                    </a>
+                    <a href="{{ route('petugas.transaksi.index', ['status' => 'keluar']) }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('petugas.transaksi.index') && request('status') === 'keluar' ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span>Riwayat / History Transaksi</span>
                     </a>
                 @elseif(Auth::user()->role === 'owner')
-                    <a href="{{ route('owner.dashboard') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('owner.dashboard') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        📊 Dashboard
+                    <a href="{{ route('owner.dashboard') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('owner.dashboard') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        <span>Dashboard</span>
                     </a>
-                    <a href="{{ route('owner.laporan.index') }}" class="px-3 py-2 rounded-md {{ request()->routeIs('owner.laporan.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
-                        📑 Rekap Laporan Transaksi
+                    <a href="{{ route('owner.laporan.index') }}" class="px-3 py-2 rounded-md inline-flex items-center space-x-1.5 {{ request()->routeIs('owner.laporan.*') ? 'bg-indigo-50 text-indigo-700 font-bold' : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50' }}">
+                        <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <span>Rekap Laporan Transaksi</span>
                     </a>
                 @endif
             </div>
@@ -99,25 +114,31 @@
         @if(session('success'))
             <div class="mb-4 bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg shadow-sm flex items-center justify-between">
                 <div class="flex items-center space-x-2">
-                    <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                    <svg class="w-5 h-5 text-emerald-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                     <span class="text-sm font-medium text-emerald-800">{{ session('success') }}</span>
                 </div>
-                @if(session('cetak_masuk_id'))
-                    <a href="{{ route('petugas.transaksi.struk-masuk', session('cetak_masuk_id')) }}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-1.5 px-3 rounded shadow">
-                        🖨️ Cetak Tiket Masuk
-                    </a>
-                @endif
-                @if(session('cetak_keluar_id'))
-                    <a href="{{ route('petugas.transaksi.struk-keluar', session('cetak_keluar_id')) }}" target="_blank" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-1.5 px-3 rounded shadow">
-                        🖨️ Cetak Struk Keluar
-                    </a>
-                @endif
+                <div class="flex items-center space-x-2">
+                    @if(session('cetak_masuk_id'))
+                        <a href="{{ route('petugas.transaksi.struk-masuk', session('cetak_masuk_id')) }}" target="_blank"
+                           class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-1.5 px-3 rounded shadow inline-flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                            <span>Cetak Tiket Masuk</span>
+                        </a>
+                    @endif
+                    @if(session('cetak_keluar_id'))
+                        <a href="{{ route('petugas.transaksi.struk-keluar', session('cetak_keluar_id')) }}" target="_blank"
+                           class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-1.5 px-3 rounded shadow inline-flex items-center space-x-1">
+                            <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                            <span>Cetak Struk Keluar</span>
+                        </a>
+                    @endif
+                </div>
             </div>
         @endif
 
         @if(session('error'))
             <div class="mb-4 bg-rose-50 border-l-4 border-rose-500 p-4 rounded-r-lg shadow-sm flex items-center space-x-2">
-                <svg class="w-5 h-5 text-rose-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
+                <svg class="w-5 h-5 text-rose-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
                 <span class="text-sm font-medium text-rose-800">{{ session('error') }}</span>
             </div>
         @endif

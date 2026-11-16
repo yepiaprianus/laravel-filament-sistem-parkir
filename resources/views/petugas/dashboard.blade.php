@@ -5,8 +5,9 @@
 @section('page_subtitle', 'Panel kerja petugas operasional pencatatan kendaraan.')
 
 @section('page_action')
-    <a href="{{ route('petugas.transaksi.masuk') }}" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 px-4 rounded-lg shadow transition flex items-center space-x-1">
-        <span>➕ Catat Kendaraan Masuk</span>
+    <a href="{{ route('petugas.transaksi.masuk') }}" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 px-4 rounded-lg shadow transition inline-flex items-center space-x-1.5">
+        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"></path></svg>
+        <span>Catat Kendaraan Masuk</span>
     </a>
 @endsection
 

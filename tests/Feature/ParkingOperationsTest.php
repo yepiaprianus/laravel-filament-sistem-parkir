@@ -38,7 +38,7 @@ class ParkingOperationsTest extends TestCase
             'pemilik' => 'Pak Budi',
         ]);
 
-        $response->assertRedirect('/petugas/transaksi');
+        $response->assertRedirect(route('petugas.transaksi.index', ['status' => 'masuk']));
         $this->assertDatabaseHas('tb_kendaraan', ['plat_nomor' => 'B 9999 XYZ']);
         $this->assertDatabaseHas('tb_transaksi', [
             'id_area' => $this->area->id_area,
@@ -97,7 +97,7 @@ class ParkingOperationsTest extends TestCase
         // Checkout
         $response = $this->actingAs($this->petugas)->post("/petugas/transaksi/{$trx->id_parkir}/checkout");
 
-        $response->assertRedirect('/petugas/transaksi');
+        $response->assertRedirect(route('petugas.transaksi.index', ['status' => 'keluar']));
 
         $trx->refresh();
         $this->assertEquals('keluar', $trx->status);

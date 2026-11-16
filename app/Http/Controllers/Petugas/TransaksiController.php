@@ -15,14 +15,15 @@ class TransaksiController extends Controller
 {
     public function index(Request $request)
     {
+        $currentStatus = $request->input('status', 'masuk');
+
         $query = Transaksi::with(['kendaraan', 'areaParkir', 'tarif', 'user']);
 
-        if ($request->filled('status')) {
-            $query->where('status', $request->status);
-        } else {
-            // Default tampilkan yang masih parkir terlebih dahulu
+        if ($currentStatus === 'masuk') {
             $query->where('status', 'masuk');
-        }
+        } elseif ($currentStatus === 'keluar') {
+            $query->where('status', 'keluar');
+        } // if 'all', do not filter status
 
         if ($request->filled('search')) {
             $search = strtoupper(trim($request->search));
@@ -35,10 +36,26 @@ class TransaksiController extends Controller
             $query->where('id_area', $request->id_area);
         }
 
+        if ($request->filled('tanggal')) {
+            $query->whereDate('waktu_masuk', $request->tanggal);
+        }
+
         $transaksis = $query->latest('waktu_masuk')->paginate(10)->withQueryString();
         $areas = AreaParkir::all();
 
-        return view('petugas.transaksi.index', compact('transaksis', 'areas'));
+        // Metrics for tabs
+        $countAktif = Transaksi::where('status', 'masuk')->count();
+        $countKeluarHariIni = Transaksi::where('status', 'keluar')->whereDate('waktu_keluar', today())->count();
+        $totalPendapatanHariIni = Transaksi::where('status', 'keluar')->whereDate('waktu_keluar', today())->sum('biaya_total');
+
+        return view('petugas.transaksi.index', compact(
+            'transaksis',
+            'areas',
+            'currentStatus',
+            'countAktif',
+            'countKeluarHariIni',
+            'totalPendapatanHariIni'
+        ));
     }
 
     public function masukForm()
@@ -61,7 +78,7 @@ class TransaksiController extends Controller
         try {
             $transaksi = $parkingService->prosesMasuk($validated, Auth::id());
 
-            return redirect()->route('petugas.transaksi.index')
+            return redirect()->route('petugas.transaksi.index', ['status' => 'masuk'])
                 ->with('success', "Kendaraan {$transaksi->kendaraan->plat_nomor} berhasil masuk di {$transaksi->areaParkir->nama_area}.")
                 ->with('cetak_masuk_id', $transaksi->id_parkir);
         } catch (Exception $e) {
@@ -85,7 +102,7 @@ class TransaksiController extends Controller
         try {
             $result = $parkingService->prosesKeluar($transaksi->id_parkir, Auth::id());
 
-            return redirect()->route('petugas.transaksi.index')
+            return redirect()->route('petugas.transaksi.index', ['status' => 'keluar'])
                 ->with('success', "Transaksi kendaraan {$result->kendaraan->plat_nomor} selesai. Total Biaya: Rp " . number_format($result->biaya_total, 0, ',', '.'))
                 ->with('cetak_keluar_id', $result->id_parkir);
         } catch (Exception $e) {
