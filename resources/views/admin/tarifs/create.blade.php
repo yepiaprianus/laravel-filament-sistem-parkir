@@ -10,7 +10,8 @@
         @csrf
         <div>
             <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Jenis Kendaraan</label>
-            <select name="jenis_kendaraan" required class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 outline-none">
+            <select name="jenis_kendaraan" required class="select2 w-full" data-placeholder="Pilih Jenis Kendaraan">
+                <option value=""></option>
                 <option value="motor" {{ old('jenis_kendaraan') === 'motor' ? 'selected' : '' }}>Motor</option>
                 <option value="mobil" {{ old('jenis_kendaraan') === 'mobil' ? 'selected' : '' }}>Mobil</option>
                 <option value="lainnya" {{ old('jenis_kendaraan') === 'lainnya' ? 'selected' : '' }}>Lainnya (Truk/Bus)</option>

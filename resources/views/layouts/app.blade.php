@@ -10,8 +10,132 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         body { font-family: 'Inter', sans-serif; }
+
+        /* Custom Tailwind styling for Select2 */
+        .select2-container {
+            width: 100% !important;
+        }
+        .select2-container--default .select2-selection--single {
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            padding-left: 0.75rem;
+            padding-right: 2rem;
+            transition: all 0.15s ease-in-out;
+        }
+        .select2-container--default.select2-container--open .select2-selection--single,
+        .select2-container--default.select2-container--focus .select2-selection--single {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+            outline: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #1f2937;
+            font-size: 0.875rem;
+            line-height: normal;
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+            color: #9ca3af;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100%;
+            top: 0;
+            right: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow b {
+            border-color: #6b7280 transparent transparent transparent;
+        }
+        .select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+            border-color: transparent transparent #6b7280 transparent;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__clear {
+            margin-right: 16px;
+            color: #9ca3af;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__clear:hover {
+            color: #ef4444;
+        }
+
+        /* Compact / Filter Select2 (select2-sm) */
+        .select2-sm + .select2-container .select2-selection--single {
+            height: 34px;
+            padding-left: 0.65rem;
+            padding-right: 1.75rem;
+            font-size: 0.75rem;
+        }
+        .select2-sm + .select2-container .select2-selection--single .select2-selection__rendered {
+            font-size: 0.75rem;
+        }
+        .select2-sm + .select2-container .select2-selection--single .select2-selection__clear {
+            margin-right: 14px;
+            font-size: 0.95rem;
+        }
+
+        /* Dropdown Menu */
+        .select2-dropdown {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff;
+            z-index: 50;
+            overflow: hidden;
+        }
+        .select2-search--dropdown {
+            padding: 6px 8px;
+            background-color: #f9fafb;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .select2-search--dropdown .select2-search__field {
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 6px 10px;
+            font-size: 0.8125rem;
+            outline: none;
+            background-color: #ffffff;
+            width: 100% !important;
+            box-sizing: border-box;
+        }
+        .select2-search--dropdown .select2-search__field:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.15);
+        }
+        .select2-results__options {
+            max-height: 220px;
+            padding: 4px 0;
+        }
+        .select2-results__option {
+            padding: 7px 12px;
+            font-size: 0.8125rem;
+            color: #374151;
+            transition: background-color 0.1s ease;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: #4f46e5 !important;
+            color: #ffffff !important;
+        }
+        .select2-container--default .select2-results__option[aria-selected=true] {
+            background-color: #eef2ff;
+            color: #4338ca;
+            font-weight: 600;
+        }
+        .select2-container--default .select2-results__option[aria-disabled=true] {
+            color: #9ca3af;
+            background-color: #f3f4f6;
+            cursor: not-allowed;
+        }
     </style>
     @stack('styles')
 </head>
@@ -174,6 +298,49 @@
         &copy; {{ date('Y') }} Sistem Parkir - Laravel Murni (Branch: <code class="bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">laravel-murni</code>)
     </footer>
 
+    <!-- jQuery and Select2 JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Inisialisasi universal Select2
+            $('.select2').each(function() {
+                var $select = $(this);
+                var placeholder = $select.data('placeholder') || $select.find('option[value=""]').first().text() || 'Pilih opsi';
+                $select.select2({
+                    width: '100%',
+                    placeholder: placeholder,
+                    allowClear: $select.data('allow-clear') !== false && $select.find('option[value=""]').length > 0
+                });
+            });
+
+            // Handle validasi visual HTML5 form submit untuk Select2
+            $('form').on('submit', function(e) {
+                var hasInvalid = false;
+                var $firstInvalid = null;
+                $(this).find('select.select2[required]').each(function() {
+                    if (!$(this).val() || $(this).val() === '') {
+                        hasInvalid = true;
+                        var $container = $(this).next('.select2-container').find('.select2-selection');
+                        $container.css('border-color', '#ef4444').css('box-shadow', '0 0 0 2px rgba(239, 68, 68, 0.2)');
+                        if (!$firstInvalid) $firstInvalid = $(this);
+                    }
+                });
+                if (hasInvalid && $firstInvalid) {
+                    e.preventDefault();
+                    $firstInvalid.select2('open');
+                }
+            });
+
+            // Reset error border saat nilai terpilih
+            $(document).on('change', 'select.select2', function() {
+                if ($(this).val()) {
+                    var $container = $(this).next('.select2-container').find('.select2-selection');
+                    $container.css('border-color', '').css('box-shadow', '');
+                }
+            });
+        });
+    </script>
     @stack('scripts')
 </body>
 </html>

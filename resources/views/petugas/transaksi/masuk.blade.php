@@ -17,8 +17,8 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
                 <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Jenis Kendaraan</label>
-                <select name="jenis_kendaraan" required class="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 outline-none">
-                    <option value="">-- Pilih Jenis --</option>
+                <select name="jenis_kendaraan" required class="select2 w-full" data-placeholder="Pilih Jenis Kendaraan">
+                    <option value=""></option>
                     @foreach($tarifs as $tarif)
                         <option value="{{ $tarif->jenis_kendaraan }}" {{ old('jenis_kendaraan') === $tarif->jenis_kendaraan ? 'selected' : '' }}>
                             {{ ucfirst($tarif->jenis_kendaraan) }} (Rp {{ number_format($tarif->tarif_per_jam, 0, ',', '.') }}/jam)
@@ -29,8 +29,8 @@
 
             <div>
                 <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Area Parkir Tujuan</label>
-                <select name="id_area" required class="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 outline-none">
-                    <option value="">-- Pilih Area --</option>
+                <select name="id_area" required class="select2 w-full" data-placeholder="Pilih Area Parkir">
+                    <option value=""></option>
                     @foreach($areas as $area)
                         <option value="{{ $area->id_area }}" {{ $area->isPenuh() ? 'disabled' : '' }} {{ old('id_area') == $area->id_area ? 'selected' : '' }}>
                             {{ $area->nama_area }} (Sisa: {{ $area->sisaKapasitas() }}) {{ $area->isPenuh() ? '- [PENUH]' : '' }}

@@ -32,7 +32,7 @@
 
             <div>
                 <label class="block text-[11px] font-bold text-gray-500 uppercase mb-1">Jenis Kendaraan</label>
-                <select name="jenis_kendaraan" class="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none">
+                <select name="jenis_kendaraan" class="select2 select2-sm w-full" data-placeholder="Semua Jenis">
                     <option value="">Semua Jenis</option>
                     @foreach($tarifs as $t)
                         <option value="{{ $t->jenis_kendaraan }}" {{ request('jenis_kendaraan') === $t->jenis_kendaraan ? 'selected' : '' }}>
@@ -44,7 +44,7 @@
 
             <div>
                 <label class="block text-[11px] font-bold text-gray-500 uppercase mb-1">Status Transaksi</label>
-                <select name="status" class="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none">
+                <select name="status" class="select2 select2-sm w-full" data-placeholder="Semua Status">
                     <option value="">Semua Status</option>
                     <option value="keluar" {{ request('status') === 'keluar' ? 'selected' : '' }}>Selesai (Keluar)</option>
                     <option value="masuk" {{ request('status') === 'masuk' ? 'selected' : '' }}>Masih Parkir</option>

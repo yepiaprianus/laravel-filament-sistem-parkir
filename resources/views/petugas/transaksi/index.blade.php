@@ -59,7 +59,7 @@
 
                 <div>
                     <label class="block text-[10px] font-bold text-gray-400 uppercase mb-0.5">Filter Area</label>
-                    <select name="id_area" class="w-full px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none">
+                    <select name="id_area" class="select2 select2-sm w-full" data-placeholder="Semua Area">
                         <option value="">Semua Area</option>
                         @foreach($areas as $area)
                             <option value="{{ $area->id_area }}" {{ request('id_area') == $area->id_area ? 'selected' : '' }}>

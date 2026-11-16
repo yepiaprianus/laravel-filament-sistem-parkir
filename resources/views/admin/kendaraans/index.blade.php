@@ -15,16 +15,18 @@
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
     <!-- Filter -->
     <div class="p-4 border-b border-gray-100 bg-gray-50/50">
-        <form action="{{ route('admin.kendaraans.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3">
+        <form action="{{ route('admin.kendaraans.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3 items-center">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari plat nomor atau pemilik..."
-                   class="px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none flex-1">
-            <select name="jenis_kendaraan" class="px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none">
-                <option value="">Semua Jenis</option>
-                <option value="motor" {{ request('jenis_kendaraan') === 'motor' ? 'selected' : '' }}>Motor</option>
-                <option value="mobil" {{ request('jenis_kendaraan') === 'mobil' ? 'selected' : '' }}>Mobil</option>
-                <option value="lainnya" {{ request('jenis_kendaraan') === 'lainnya' ? 'selected' : '' }}>Lainnya</option>
-            </select>
-            <button type="submit" class="bg-gray-800 hover:bg-black text-white text-xs font-bold px-4 py-1.5 rounded-lg transition">
+                   class="w-full sm:flex-1 px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none">
+            <div class="w-full sm:w-48">
+                <select name="jenis_kendaraan" class="select2 select2-sm w-full" data-placeholder="Semua Jenis">
+                    <option value="">Semua Jenis</option>
+                    <option value="motor" {{ request('jenis_kendaraan') === 'motor' ? 'selected' : '' }}>Motor</option>
+                    <option value="mobil" {{ request('jenis_kendaraan') === 'mobil' ? 'selected' : '' }}>Mobil</option>
+                    <option value="lainnya" {{ request('jenis_kendaraan') === 'lainnya' ? 'selected' : '' }}>Lainnya</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full sm:w-auto bg-gray-800 hover:bg-black text-white text-xs font-bold px-4 py-1.5 rounded-lg transition">
                 Filter
             </button>
             @if(request()->hasAny(['search', 'jenis_kendaraan']))

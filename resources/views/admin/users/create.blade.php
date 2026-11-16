@@ -28,7 +28,8 @@
 
         <div>
             <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Role</label>
-            <select name="role" required class="w-full px-3 py-2 text-sm rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 outline-none">
+            <select name="role" required class="select2 w-full" data-placeholder="Pilih Role Pengguna">
+                <option value=""></option>
                 <option value="admin" {{ old('role') === 'admin' ? 'selected' : '' }}>Admin (Pengelola Master Data)</option>
                 <option value="petugas" {{ old('role') === 'petugas' ? 'selected' : '' }}>Petugas (Operator Lapangan)</option>
                 <option value="owner" {{ old('role') === 'owner' ? 'selected' : '' }}>Owner (Pemilik / Laporan)</option>

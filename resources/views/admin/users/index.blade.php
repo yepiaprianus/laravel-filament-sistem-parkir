@@ -15,16 +15,18 @@
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
     <!-- Filter Bar -->
     <div class="p-4 border-b border-gray-100 bg-gray-50/50">
-        <form action="{{ route('admin.users.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3">
+        <form action="{{ route('admin.users.index') }}" method="GET" class="flex flex-col sm:flex-row gap-3 items-center">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama atau username..."
-                   class="px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none flex-1">
-            <select name="role" class="px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none">
-                <option value="">Semua Role</option>
-                <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
-                <option value="petugas" {{ request('role') === 'petugas' ? 'selected' : '' }}>Petugas</option>
-                <option value="owner" {{ request('role') === 'owner' ? 'selected' : '' }}>Owner</option>
-            </select>
-            <button type="submit" class="bg-gray-800 hover:bg-black text-white text-xs font-bold px-4 py-1.5 rounded-lg transition">
+                   class="w-full sm:flex-1 px-3 py-1.5 text-xs rounded-lg border border-gray-300 focus:ring-1 focus:ring-indigo-500 outline-none">
+            <div class="w-full sm:w-48">
+                <select name="role" class="select2 select2-sm w-full" data-placeholder="Semua Role">
+                    <option value="">Semua Role</option>
+                    <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="petugas" {{ request('role') === 'petugas' ? 'selected' : '' }}>Petugas</option>
+                    <option value="owner" {{ request('role') === 'owner' ? 'selected' : '' }}>Owner</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full sm:w-auto bg-gray-800 hover:bg-black text-white text-xs font-bold px-4 py-1.5 rounded-lg transition">
                 Filter
             </button>
             @if(request()->hasAny(['search', 'role']))
