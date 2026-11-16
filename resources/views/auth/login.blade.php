@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Sistem Parkir (Laravel Murni)</title>
+    <title>Login - E-PARKING SYSTEM</title>
+    <!-- Meta & Favicon -->
+    <meta name="description" content="E-Parking System - Sistem Manajemen Parkir Modern & Terintegrasi">
+    <meta property="og:title" content="Login - E-PARKING SYSTEM">
+    <meta property="og:image" content="{{ asset('images/logo.svg') }}">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>body { font-family: 'Inter', sans-serif; }</style>
@@ -13,11 +19,11 @@
     <div class="max-w-md w-full bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-100">
         <!-- Header -->
         <div class="bg-indigo-700 px-8 py-8 text-center text-white relative">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md mb-3 shadow-inner">
-                <span class="text-3xl">🅿️</span>
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white p-1 mb-3 shadow-lg">
+                <img src="{{ asset('images/logo.svg') }}" alt="E-Parking Logo" class="w-full h-full rounded-xl">
             </div>
-            <h1 class="text-2xl font-black tracking-tight">SISTEM PARKIR</h1>
-            <p class="text-indigo-200 text-xs mt-1">Laravel Murni MVC Edition</p>
+            <h1 class="text-2xl font-black tracking-tight">E-PARKING SYSTEM</h1>
+            <p class="text-indigo-200 text-xs mt-1">Smart Digital Parking Management</p>
         </div>
 
         <!-- Form -->

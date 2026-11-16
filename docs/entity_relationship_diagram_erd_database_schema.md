@@ -1,4 +1,4 @@
-# Desain Database & ERD Aplikasi Parkir
+# Desain Database & ERD E-PARKING SYSTEM
 
 Di bawah ini adalah struktur Entity Relationship Diagram (ERD) yang direpresentasikan menggunakan sintaks diagram Mermaid, sesuai dengan skema yang ada pada dokumen soal.
 

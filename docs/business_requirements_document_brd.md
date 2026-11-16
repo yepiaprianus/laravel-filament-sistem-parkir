@@ -1,9 +1,9 @@
 # Business Requirements Document (BRD)
-**Proyek:** Pengembangan Aplikasi Parkir
+**Proyek:** E-PARKING SYSTEM (Aplikasi Manajemen Parkir Terintegrasi)
 **Posisi:** Programmer (Software Developer)
 
 ## 1. Pendahuluan
-Dokumen ini menjelaskan kebutuhan bisnis untuk pembuatan "Aplikasi Parkir". Aplikasi ini ditujukan untuk mengelola sistem perparkiran yang mencakup pencatatan kendaraan masuk dan keluar, manajemen area parkir, penetapan tarif, serta pelaporan keuangan untuk manajemen.
+Dokumen ini menjelaskan kebutuhan bisnis untuk pembuatan **"E-PARKING SYSTEM"**. Aplikasi ini ditujukan untuk mengelola sistem perparkiran modern yang mencakup pencatatan kendaraan masuk dan keluar secara cepat (dengan dukungan quick-picker master kendaraan), manajemen area parkir berkapasitas dinamis, penetapan master tarif, serta pelaporan keuangan transparan untuk manajemen.
 
 ## 2. Tujuan Bisnis
 *   Mendigitalisasi proses pencatatan parkir (masuk dan keluar) agar lebih cepat dan akurat.
@@ -28,6 +28,7 @@ Berdasarkan tabel matriks kebutuhan bisnis, berikut adalah fungsi utama yang har
     *   Melihat Log Aktivitas sistem.
 *   **Operasional Parkir (oleh Petugas):**
     *   Mencatat Transaksi kendaraan masuk dan keluar.
-    *   Mencetak Struk parkir untuk pelanggan.
+    *   Fitur *Quick-Select & Auto-fill* kendaraan dari Master Kendaraan untuk percepatan antrean di gerbang masuk.
+    *   Mencetak Struk parkir untuk pelanggan (tiket masuk thermal dan struk keluar).
 *   **Pelaporan (oleh Owner):**
     *   Melihat rekap transaksi sesuai dengan rentang waktu yang diminta (filter tanggal/waktu).

@@ -4,7 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Sistem Parkir') - Aplikasi Parkir</title>
+    <title>@yield('title', 'Dashboard') - E-PARKING SYSTEM</title>
+    <!-- Meta & Branding -->
+    <meta name="description" content="E-Parking System - Sistem Manajemen Parkir Modern & Terintegrasi">
+    <meta property="og:title" content="E-PARKING SYSTEM">
+    <meta property="og:description" content="Sistem Manajemen Parkir Modern & Terintegrasi">
+    <meta property="og:image" content="{{ asset('images/logo.svg') }}">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo.svg') }}">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,11 +153,13 @@
     <header class="bg-indigo-700 text-white shadow-md sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <div class="flex items-center space-x-3">
-                <span class="bg-white text-indigo-700 font-black text-xl rounded-lg px-2.5 py-1 shadow">🅿️</span>
-                <div>
-                    <a href="{{ route('dashboard') }}" class="font-bold text-lg tracking-wide hover:text-indigo-100 transition">PARKIR SYSTEM</a>
-                    <span class="text-xs text-indigo-200 block -mt-1 font-medium">Laravel Murni Edition</span>
-                </div>
+                <a href="{{ route('dashboard') }}" class="flex items-center space-x-2.5 group">
+                    <img src="{{ asset('images/logo.svg') }}" alt="E-Parking Logo" class="w-10 h-10 rounded-xl shadow group-hover:scale-105 transition-transform">
+                    <div>
+                        <span class="font-black text-base sm:text-lg tracking-wider text-white group-hover:text-indigo-100 transition block leading-tight">E-PARKING SYSTEM</span>
+                        <span class="text-[10px] sm:text-xs text-indigo-200 block font-medium">Smart Digital Parking Edition</span>
+                    </div>
+                </a>
             </div>
 
             <!-- User Menu -->
@@ -295,7 +305,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 mt-auto py-4 text-center text-xs text-gray-400">
-        &copy; {{ date('Y') }} Sistem Parkir - Laravel Murni (Branch: <code class="bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">laravel-murni</code>)
+        &copy; {{ date('Y') }} E-PARKING SYSTEM - Laravel Murni (Branch: <code class="bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded">laravel-murni</code>)
     </footer>
 
     <!-- jQuery and Select2 JS -->

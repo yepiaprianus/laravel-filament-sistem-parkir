@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD)
-**Proyek:** Pengembangan Aplikasi Parkir
+**Proyek:** E-PARKING SYSTEM (Aplikasi Manajemen Parkir Terintegrasi)
 
 ## 1. Deskripsi Produk
-Aplikasi Parkir adalah perangkat lunak berbasis *database* yang akan menangani alur operasional parkir kendaraan. Aplikasi ini dikembangkan dengan memperhatikan *Coding Guidelines* dan *Best Practices* untuk memastikan performa yang cepat dan efisien.
+E-PARKING SYSTEM adalah perangkat lunak berbasis web dan *database* yang menangani seluruh siklus operasional perparkiran modern secara efisien, responsif, dan mudah digunakan. Aplikasi ini dilengkapi *branding* E-PARKING SYSTEM, antarmuka Select2 modern, visualisasi kapasitas area *real-time*, serta pengisian otomatis (*auto-lookup*) kendaraan terdaftar di pos operasional masuk.
 
 ## 2. Fitur dan Fungsionalitas (Feature Matrix)
 
@@ -27,9 +27,9 @@ Aplikasi Parkir adalah perangkat lunak berbasis *database* yang akan menangani a
 
 ### B. Proses Transaksi
 **Kendaraan Masuk:**
-1. **Input:** Petugas memasukkan nomor plat, jenis kendaraan, dan area parkir.
-2. **Proses:** Sistem membuat record baru di `tb_transaksi` dengan `status`='masuk' dan `waktu_masuk` = waktu saat ini. Sistem mengurangi/menambahkan `terisi` pada `tb_area_parkir`.
-3. **Output:** Tiket masuk (virtual/cetak sementara).
+1. **Input:** Petugas memasukkan nomor plat atau memilih dari *Quick-Dropdown Master Kendaraan*.
+2. **Proses:** Sistem mencocokkan plat nomor secara *real-time*. Jika ditemukan pada master kendaraan, sistem melakukan *auto-fill* (jenis kendaraan, warna, pemilik). Petugas menentukan area parkir tujuan (sistem menampilkan status kapasitas sisa). Sistem membuat record baru di `tb_transaksi` dengan `status`='masuk' dan `waktu_masuk` = waktu saat ini, serta memperbarui okupansi `terisi` pada `tb_area_parkir`. Jika kendaraan belum terdaftar, sistem mendaftarkannya otomatis ke master kendaraan.
+3. **Output:** Tiket masuk (virtual/cetak struk thermal karcis masuk).
 
 **Kendaraan Keluar:**
 1. **Input:** Petugas memindai/memasukkan id_parkir/nomor plat.

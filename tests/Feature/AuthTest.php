@@ -20,7 +20,7 @@ class AuthTest extends TestCase
     {
         $response = $this->get('/login');
         $response->assertStatus(200);
-        $response->assertSee('SISTEM PARKIR');
+        $response->assertSee('E-PARKING SYSTEM');
     }
 
     public function test_admin_can_login_and_redirect_to_admin_dashboard(): void

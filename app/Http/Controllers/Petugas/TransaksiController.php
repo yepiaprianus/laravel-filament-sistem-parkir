@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Petugas;
 
 use App\Http\Controllers\Controller;
 use App\Models\AreaParkir;
+use App\Models\Kendaraan;
 use App\Models\Tarif;
 use App\Models\Transaksi;
 use App\Services\ParkingService;
@@ -62,7 +63,13 @@ class TransaksiController extends Controller
     {
         $areas = AreaParkir::all();
         $tarifs = Tarif::all();
-        return view('petugas.transaksi.masuk', compact('areas', 'tarifs'));
+        $registeredVehicles = Kendaraan::select('plat_nomor', 'jenis_kendaraan', 'warna', 'pemilik')
+            ->orderBy('plat_nomor')
+            ->get()
+            ->unique('plat_nomor')
+            ->values();
+
+        return view('petugas.transaksi.masuk', compact('areas', 'tarifs', 'registeredVehicles'));
     }
 
     public function storeMasuk(Request $request, ParkingService $parkingService)

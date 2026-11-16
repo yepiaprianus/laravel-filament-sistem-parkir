@@ -28,6 +28,16 @@ class ParkingOperationsTest extends TestCase
         $this->tarifMotor = Tarif::where('jenis_kendaraan', 'motor')->first();
     }
 
+    public function test_petugas_can_view_masuk_form_with_registered_vehicles(): void
+    {
+        $response = $this->actingAs($this->petugas)->get('/petugas/transaksi/masuk');
+        $response->assertStatus(200);
+        $response->assertViewHas('registeredVehicles');
+        $response->assertViewHas('areas');
+        $response->assertSee('Identifikasi Kendaraan');
+        $response->assertSee('Pilih Dari Master Kendaraan (Cepat)');
+    }
+
     public function test_petugas_can_process_vehicle_entry(): void
     {
         $response = $this->actingAs($this->petugas)->post('/petugas/transaksi/masuk', [
